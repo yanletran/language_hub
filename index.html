@@ -1,0 +1,1031 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+
+  :root {
+    --clove: #491814;
+    --clay: #AB7D41;
+    --rust: #C3593F;
+    --ginger: #EFCA93;
+    --linen: #EFE8D8;
+    --shell: #DCBAAE;
+    --olive: #62644C;
+    --paprika: #AD2F21;
+    --mandarin-red: #C0392B;
+    --mandarin-gold: #D4A017;
+    --mandarin-ink: #2C1810;
+    --mandarin-jade: #3D7A6B;
+    --mandarin-rose: #E8C4B8;
+    --mandarin-cream: #F5F0E8;
+    --mandarin-amber: #B8860B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: #F7F3EC;
+    color: var(--clove);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .hub-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  .hub-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .hub-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--clay);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .hub-title {
+    font-family: 'Lora', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--clove);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .hub-subtitle {
+    font-size: 1rem;
+    color: var(--clay);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .hub-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+
+  .hub-divider-line {
+    width: 60px;
+    height: 1px;
+    background: var(--shell);
+  }
+
+  .hub-divider-glyph {
+    font-size: 1.1rem;
+    color: var(--shell);
+  }
+
+  .goal-strip {
+    background: var(--clove);
+    color: var(--ginger);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .goal-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+  }
+
+  .goal-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rust);
+    flex-shrink: 0;
+  }
+
+  .countdown-badge {
+    background: var(--rust);
+    color: white;
+    border-radius: 20px;
+    padding: 0.3rem 0.9rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .languages-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 620px) {
+    .languages-grid { grid-template-columns: 1fr; }
+    .hub-title { font-size: 1.8rem; }
+  }
+
+  .lang-card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--shell);
+    background: white;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+  }
+
+  .lang-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(73,24,20,0.1);
+  }
+
+  .lang-card-header {
+    padding: 1.25rem 1.25rem 1rem;
+    position: relative;
+  }
+
+  .jp-header { background: var(--clove); }
+  .zh-header { background: var(--mandarin-ink); }
+
+  .lang-script {
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    opacity: 0.25;
+    position: absolute;
+    right: 1rem;
+    top: 0.75rem;
+  }
+
+  .jp-script { font-family: 'Noto Sans JP', sans-serif; color: var(--ginger); }
+  .zh-script { font-family: 'Noto Sans SC', sans-serif; color: var(--mandarin-gold); }
+
+  .lang-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .jp-tag { background: rgba(239,202,147,0.2); color: var(--ginger); }
+  .zh-tag { background: rgba(212,160,23,0.2); color: var(--mandarin-gold); }
+
+  .lang-name {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: white;
+    display: block;
+  }
+
+  .lang-target {
+    font-size: 0.8rem;
+    color: var(--shell);
+    font-style: italic;
+    margin-top: 0.15rem;
+  }
+
+  .lang-card-body {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .progress-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.4rem;
+  }
+
+  .progress-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .progress-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--clove);
+  }
+
+  .progress-track {
+    height: 5px;
+    border-radius: 3px;
+    background: var(--linen);
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .progress-fill-jp {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--rust);
+    transition: width 0.6s ease;
+  }
+
+  .progress-fill-zh {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--mandarin-red);
+    transition: width 0.6s ease;
+  }
+
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .pill-jp-active { border-color: var(--rust); color: var(--rust); background: rgba(195,89,63,0.07); }
+  .pill-jp-done { border-color: var(--olive); color: var(--olive); background: rgba(98,100,76,0.07); }
+  .pill-zh-active { border-color: var(--mandarin-red); color: var(--mandarin-red); background: rgba(192,57,43,0.07); }
+  .pill-zh-todo { border-color: #ccc; color: #aaa; background: transparent; }
+
+  .pill-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .stat-box {
+    background: var(--linen);
+    border-radius: 8px;
+    padding: 0.5rem 0.6rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--clove);
+    display: block;
+  }
+
+  .stat-lbl {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--clay);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .lang-link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.65rem;
+    border-radius: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    font-weight: 500;
+  }
+
+  .btn-jp { background: var(--clove); color: var(--ginger); }
+  .btn-zh { background: var(--mandarin-ink); color: var(--mandarin-gold); }
+
+  .lang-link-btn:hover { opacity: 0.85; }
+
+  .btn-arrow { font-size: 12px; }
+
+  .section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--shell);
+  }
+
+  .week-view {
+    background: white;
+    border: 1px solid var(--shell);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.4rem;
+  }
+
+  .day-cell {
+    text-align: center;
+    padding: 0.5rem 0.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.1s;
+    position: relative;
+  }
+
+  .day-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #aaa;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .day-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--clove);
+    display: block;
+  }
+
+  .day-dots {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    margin-top: 0.3rem;
+  }
+
+  .day-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .dot-jp { background: var(--rust); }
+  .dot-zh { background: var(--mandarin-red); }
+  .dot-empty { background: var(--linen); }
+
+  .day-cell.today { background: var(--linen); }
+  .day-cell.today .day-num { color: var(--rust); }
+
+  .day-cell:hover { background: var(--linen); }
+
+  .hsk-principles {
+    background: white;
+    border: 1px solid var(--shell);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .hsk-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 620px) {
+    .hsk-grid { grid-template-columns: repeat(3, 1fr); }
+    .week-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .hsk-level {
+    border-radius: 8px;
+    padding: 0.7rem 0.4rem;
+    text-align: center;
+    border: 1px solid;
+    position: relative;
+  }
+
+  .hsk-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .hsk-words {
+    font-size: 9px;
+    font-family: 'DM Mono', monospace;
+    display: block;
+    opacity: 0.7;
+  }
+
+  .hsk-active {
+    background: rgba(192,57,43,0.08);
+    border-color: var(--mandarin-red);
+    color: var(--mandarin-red);
+  }
+
+  .hsk-done {
+    background: rgba(61,122,107,0.1);
+    border-color: var(--mandarin-jade);
+    color: var(--mandarin-jade);
+  }
+
+  .hsk-future {
+    background: var(--linen);
+    border-color: var(--shell);
+    color: #aaa;
+  }
+
+  .hsk-target {
+    background: rgba(212,160,23,0.1);
+    border-color: var(--mandarin-gold);
+    color: var(--mandarin-amber);
+  }
+
+  .mandarin-principles {
+    background: white;
+    border: 1px solid var(--shell);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .principle-card {
+    background: var(--linen);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+  }
+
+  .principle-icon {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+
+  .principle-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--clove);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+
+  .principle-text {
+    font-size: 12px;
+    color: var(--clay);
+    line-height: 1.5;
+  }
+
+  .quick-links {
+    background: white;
+    border: 1px solid var(--shell);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .quick-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--clove);
+    background: var(--linen);
+    border: 1px solid transparent;
+    transition: border-color 0.15s;
+    cursor: pointer;
+  }
+
+  .quick-link:hover { border-color: var(--shell); }
+
+  .link-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .icon-jp { background: var(--clove); color: var(--ginger); }
+  .icon-zh { background: var(--mandarin-ink); color: var(--mandarin-gold); }
+  .icon-both { background: var(--clay); color: white; }
+
+  .link-text { line-height: 1.3; }
+  .link-sub { color: #aaa; font-size: 10px; display: block; }
+
+  .note-block {
+    background: rgba(195,89,63,0.06);
+    border-left: 3px solid var(--rust);
+    border-radius: 0 8px 8px 0;
+    padding: 0.75rem 1rem;
+    font-size: 12px;
+    color: var(--clay);
+    line-height: 1.6;
+    margin-top: 1rem;
+  }
+
+  .mandarin-note {
+    background: rgba(192,57,43,0.05);
+    border-left-color: var(--mandarin-red);
+  }
+
+  .footer-msg {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--shell);
+  }
+
+  .footer-glyphs {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    opacity: 0.4;
+  }
+
+  .footer-text {
+    font-size: 0.85rem;
+    color: var(--clay);
+    font-style: italic;
+  }
+
+  .tab-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .tab-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    border: 1px solid var(--shell);
+    background: transparent;
+    color: var(--clay);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.05em;
+  }
+
+  .tab-btn.active-jp { background: var(--clove); color: var(--ginger); border-color: var(--clove); }
+  .tab-btn.active-zh { background: var(--mandarin-ink); color: var(--mandarin-gold); border-color: var(--mandarin-ink); }
+
+  .tab-panel { display: none; }
+  .tab-panel.visible { display: block; }
+
+  .zh-mandarin-tag {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 11px;
+    color: var(--mandarin-gold);
+    margin-left: 0.3rem;
+    opacity: 0.8;
+  }
+
+  .xp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background: var(--ginger);
+    color: var(--clove);
+    font-weight: 500;
+  }
+
+  .streak-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.9rem;
+    background: var(--linen);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .streak-fire { font-size: 1rem; }
+  .streak-num { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; color: var(--rust); }
+  .streak-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--clay); }
+</style>
+
+<div class="hub-wrapper">
+
+  <header class="hub-header">
+    <span class="hub-eyebrow">Language Learning · Central Hub</span>
+    <h1 class="hub-title">The Language Atelier</h1>
+    <p class="hub-subtitle">Japanese · Mandarin Chinese — one practice, two paths</p>
+
+    <div class="hub-divider">
+      <div class="hub-divider-line"></div>
+      <span class="hub-divider-glyph" style="font-family:'Noto Sans JP',sans-serif; font-size:1.3rem; opacity:0.5; color:var(--clove);">語</span>
+      <span class="hub-divider-glyph" style="font-family:'Noto Sans SC',sans-serif; font-size:1.3rem; opacity:0.5; color:var(--mandarin-red);">语</span>
+      <div class="hub-divider-line"></div>
+    </div>
+  </header>
+
+  <div class="goal-strip">
+    <div class="goal-item"><span class="goal-dot"></span>Target: conversational fluency in both languages</div>
+    <div class="goal-item"><span class="goal-dot"></span>Study outside coursework · consistency over grades</div>
+    <div class="goal-item"><span class="goal-dot"></span>JLPT N4 registration Dec 2026</div>
+    <div class="countdown-badge" id="countdown-badge">Loading...</div>
+  </div>
+
+  <div class="languages-grid">
+
+    <div class="lang-card" onclick="openLink('https://notion.so/334a4278eeb381fe9565f9ab61c3857f')">
+      <div class="lang-card-header jp-header">
+        <span class="lang-script jp-script">語</span>
+        <span class="lang-tag jp-tag">JLPT N4 · Genki 1 &amp; 2</span>
+        <span class="lang-name">日本語</span>
+        <span class="lang-target">Target: N4 by December 2026</span>
+      </div>
+      <div class="lang-card-body">
+        <div class="progress-label-row">
+          <span class="progress-label">90-day plan</span>
+          <span class="progress-val">Day 7 / 90</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill-jp" style="width: 7.8%"></div></div>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <span class="stat-num">7</span>
+            <span class="stat-lbl">Days done</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">1</span>
+            <span class="stat-lbl">Chapters</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">23</span>
+            <span class="stat-lbl">Total ch.</span>
+          </div>
+        </div>
+
+        <div class="skill-pills">
+          <span class="skill-pill pill-jp-done"><span class="pill-dot"></span>Hiragana</span>
+          <span class="skill-pill pill-jp-done"><span class="pill-dot"></span>Katakana</span>
+          <span class="skill-pill pill-jp-active"><span class="pill-dot"></span>Grammar</span>
+          <span class="skill-pill pill-jp-active"><span class="pill-dot"></span>Speaking</span>
+          <span class="skill-pill pill-jp-active"><span class="pill-dot"></span>Kanji</span>
+        </div>
+
+        <a class="lang-link-btn btn-jp" href="https://notion.so/334a4278eeb381fe9565f9ab61c3857f" onclick="event.stopPropagation()">
+          Open Japanese Workspace <span class="btn-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="lang-card" onclick="showTab('zh')">
+      <div class="lang-card-header zh-header">
+        <span class="lang-script zh-script">语</span>
+        <span class="lang-tag zh-tag">HSK 1 → Conversational</span>
+        <span class="lang-name">普通话</span>
+        <span class="lang-target">Target: conversational by Dec 2026</span>
+      </div>
+      <div class="lang-card-body">
+        <div class="progress-label-row">
+          <span class="progress-label">HSK pathway</span>
+          <span class="progress-val">HSK 1 · Week 1</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill-zh" style="width: 2%"></div></div>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <span class="stat-num">150</span>
+            <span class="stat-lbl">HSK 1 words</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">HSK 3</span>
+            <span class="stat-lbl">Target level</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">~1200</span>
+            <span class="stat-lbl">Goal words</span>
+          </div>
+        </div>
+
+        <div class="skill-pills">
+          <span class="skill-pill pill-zh-active"><span class="pill-dot"></span>Pinyin</span>
+          <span class="skill-pill pill-zh-active"><span class="pill-dot"></span>Tones</span>
+          <span class="skill-pill pill-zh-todo"><span class="pill-dot"></span>Characters</span>
+          <span class="skill-pill pill-zh-todo"><span class="pill-dot"></span>Speaking</span>
+          <span class="skill-pill pill-zh-todo"><span class="pill-dot"></span>Listening</span>
+        </div>
+
+        <button class="lang-link-btn btn-zh" onclick="event.stopPropagation(); showTab('zh')">
+          View Mandarin System <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-view">
+    <div class="section-title">This week · <span style="font-style:italic;text-transform:none;letter-spacing:0">April 2026</span></div>
+    <div class="week-grid" id="week-grid"></div>
+    <div style="display:flex;gap:1rem;margin-top:0.75rem;align-items:center;">
+      <div style="display:flex;align-items:center;gap:0.4rem;font-family:'DM Mono',monospace;font-size:10px;color:var(--clay);">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--rust)"></div>Japanese
+      </div>
+      <div style="display:flex;align-items:center;gap:0.4rem;font-family:'DM Mono',monospace;font-size:10px;color:var(--clay);">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--mandarin-red)"></div>Mandarin
+      </div>
+      <div style="margin-left:auto;font-family:'DM Mono',monospace;font-size:10px;color:#aaa;">Thu: Business JP session</div>
+    </div>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active-zh" onclick="showTab('zh')" id="tab-zh">Mandarin system</button>
+    <button class="tab-btn" onclick="showTab('jp')" id="tab-jp">Japanese quick links</button>
+  </div>
+
+  <div class="tab-panel visible" id="panel-zh">
+
+    <div class="hsk-principles">
+      <div class="section-title">HSK pathway · to conversational fluency</div>
+      <div class="hsk-grid">
+        <div class="hsk-level hsk-done">
+          <span class="hsk-num">HSK 1</span>
+          <span class="hsk-words">150 words</span>
+          <span style="font-size:9px;font-family:'DM Mono',monospace;color:var(--mandarin-jade);display:block;margin-top:3px;">Start here</span>
+        </div>
+        <div class="hsk-level hsk-active">
+          <span class="hsk-num">HSK 2</span>
+          <span class="hsk-words">300 words</span>
+          <span style="font-size:9px;font-family:'DM Mono',monospace;color:var(--mandarin-red);display:block;margin-top:3px;">Month 2–3</span>
+        </div>
+        <div class="hsk-level hsk-target">
+          <span class="hsk-num">HSK 3</span>
+          <span class="hsk-words">600 words</span>
+          <span style="font-size:9px;font-family:'DM Mono',monospace;color:var(--mandarin-amber);display:block;margin-top:3px;">Dec target</span>
+        </div>
+        <div class="hsk-level hsk-future">
+          <span class="hsk-num">HSK 4</span>
+          <span class="hsk-words">1200 words</span>
+        </div>
+        <div class="hsk-level hsk-future">
+          <span class="hsk-num">HSK 5</span>
+          <span class="hsk-words">2500 words</span>
+        </div>
+        <div class="hsk-level hsk-future">
+          <span class="hsk-num">HSK 6</span>
+          <span class="hsk-words">5000 words</span>
+        </div>
+      </div>
+      <div class="note-block mandarin-note">
+        Conversational fluency ≈ HSK 3–4. The 90-day plan targets HSK 3 (600 words + grammar). No exam registration required — focus is natural conversation, not test scores.
+      </div>
+    </div>
+
+    <div class="mandarin-principles">
+      <div class="section-title">Mandarin system design · ADHD-friendly principles</div>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <span class="principle-icon">⏱</span>
+          <span class="principle-title">Micro-tasks only</span>
+          <span class="principle-text">Max 10–15 min per task block. Pomodoro 25-min sessions. No marathon study.</span>
+        </div>
+        <div class="principle-card">
+          <span class="principle-icon">🔤</span>
+          <span class="principle-title">Pinyin first, always</span>
+          <span class="principle-text">Every character shown with pinyin above. Tones colour-coded. Never bare characters alone.</span>
+        </div>
+        <div class="principle-card">
+          <span class="principle-icon">🗂</span>
+          <span class="principle-title">Toggle everything</span>
+          <span class="principle-text">Grammar detail, stroke order, extra examples — all collapsed by default. One idea per toggle.</span>
+        </div>
+        <div class="principle-card">
+          <span class="principle-icon">🎙</span>
+          <span class="principle-title">Tone drilling weekly</span>
+          <span class="principle-text">At least 1 recorded tone + speaking milestone per week. The 4 tones are non-negotiable from day 1.</span>
+        </div>
+        <div class="principle-card">
+          <span class="principle-icon">☀</span>
+          <span class="principle-title">Light Sundays</span>
+          <span class="principle-text">Review-only, listening immersion, or rest. Never a full study day — same rule as Japanese.</span>
+        </div>
+        <div class="principle-card">
+          <span class="principle-icon">📱</span>
+          <span class="principle-title">Tools in use</span>
+          <span class="principle-text">Quizlet (SRS vocab) · HelloChinese or Duolingo (habit) · Notion (day pages) · No Anki.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mandarin-principles" style="margin-bottom:2rem;">
+      <div class="section-title">Day page structure · Mandarin (canonical)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;">
+        <div style="background:var(--linen);border-radius:8px;padding:0.8rem;font-size:12px;color:var(--clove);">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--mandarin-red);display:block;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">1 · Metadata</span>
+          HSK Level · Vocab count · Time · Skills · XP available
+        </div>
+        <div style="background:var(--linen);border-radius:8px;padding:0.8rem;font-size:12px;color:var(--clove);">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--mandarin-red);display:block;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">2 · Session timeline</span>
+          Block · Time · Activity (identical format to JP)
+        </div>
+        <div style="background:var(--linen);border-radius:8px;padding:0.8rem;font-size:12px;color:var(--clove);">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--mandarin-red);display:block;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">3 · Tone warm-up</span>
+          0–5 min · 3 micro-tasks · 4 tones + neutral
+        </div>
+        <div style="background:var(--linen);border-radius:8px;padding:0.8rem;font-size:12px;color:var(--clove);">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--mandarin-red);display:block;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">4 · Morning blocks</span>
+          Grammar · Vocab drills · Character writing · Toggles
+        </div>
+        <div style="background:var(--linen);border-radius:8px;padding:0.8rem;font-size:12px;color:var(--clove);">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--mandarin-red);display:block;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">5 · Evening block</span>
+          Quizlet SRS · Listening · Speaking drill · Tone review
+        </div>
+        <div style="background:var(--linen);border-radius:8px;padding:0.8rem;font-size:12px;color:var(--clove);">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--mandarin-red);display:block;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">6–8 · Close-out</span>
+          Checklist · Before-next-day tasks · Closing line in Mandarin
+        </div>
+      </div>
+      <div class="note-block mandarin-note" style="margin-top:1rem;">
+        Closing lines use pinyin + characters. Example: 你今天做得很好！(Nǐ jīntiān zuò de hěn hǎo!) — same warmth as the Japanese 〜お疲れ様でした pattern.
+      </div>
+    </div>
+
+    <div class="quick-links">
+      <div class="section-title">Mandarin workspace links</div>
+      <div class="links-grid">
+        <div class="quick-link" onclick="sendPrompt('Build the Mandarin Master Hub in Notion with the same structure as the Japanese hub, following the HSK 1–3 pathway. Use the Sonture colour palette and ADHD-friendly design rules from the hand-off document.')">
+          <div class="link-icon icon-zh">普</div>
+          <div class="link-text">Master Hub <span class="link-sub">Build in Notion ↗</span></div>
+        </div>
+        <div class="quick-link" onclick="sendPrompt('Build Week 1 Day 1 Mandarin day page in Notion following the canonical structure: tone warm-up, HSK 1 vocab block, pinyin drilling, character intro for 你好/谢谢/再见. ADHD micro-tasks only.')">
+          <div class="link-icon icon-zh">日</div>
+          <div class="link-text">Day 1 · 你好 <span class="link-sub">Build first day page ↗</span></div>
+        </div>
+        <div class="quick-link" onclick="sendPrompt('Create a Mandarin Chapter Progress Tracker database in Notion mirroring the Japanese Chapter Progress Tracker but for HSK 1–3 units, with Status, Target Week, Vocab/Grammar/Tones/Speaking/Listening skill columns, Quizlet Done, Confidence rating.')">
+          <div class="link-icon icon-zh">册</div>
+          <div class="link-text">Progress Tracker DB <span class="link-sub">Build in Notion ↗</span></div>
+        </div>
+        <div class="quick-link" onclick="sendPrompt('Create a Mandarin XP Session Log database in Notion with the same formula logic as the Japanese one: base XP by session type + Quizlet score bonus + Speaking minutes bonus. Adjust session types for Mandarin: Tone Drill, Vocab Block, Speaking Milestone, Listening Session, Boss Battle.')">
+          <div class="link-icon icon-zh">分</div>
+          <div class="link-text">XP Session Log DB <span class="link-sub">Build in Notion ↗</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tab-panel" id="panel-jp">
+    <div class="quick-links">
+      <div class="section-title">Japanese workspace · quick links</div>
+      <div class="links-grid">
+        <div class="quick-link" onclick="openLink('https://notion.so/334a4278eeb381fe9565f9ab61c3857f')">
+          <div class="link-icon icon-jp">本</div>
+          <div class="link-text">Master Hub <span class="link-sub">notion.so</span></div>
+        </div>
+        <div class="quick-link" onclick="openLink('https://notion.so/339a4278eeb3815688e1d2877df4')">
+          <div class="link-icon icon-jp">計</div>
+          <div class="link-text">90-Day Plan <span class="link-sub">23 chapters</span></div>
+        </div>
+        <div class="quick-link" onclick="openLink('https://notion.so/128bd43f58d844b999c7404dcbb682c5')">
+          <div class="link-icon icon-jp">章</div>
+          <div class="link-text">Chapter Tracker <span class="link-sub">All 23 chapters</span></div>
+        </div>
+        <div class="quick-link" onclick="openLink('https://notion.so/44b3db965b3841a799b7a5acafc61415')">
+          <div class="link-icon icon-jp">XP</div>
+          <div class="link-text">XP Session Log <span class="link-sub">Auto-calc XP</span></div>
+        </div>
+        <div class="quick-link" onclick="openLink('https://notion.so/339a4278eeb38192be96d2d60fe7fb21')">
+          <div class="link-icon icon-jp">文</div>
+          <div class="link-text">Grammar Explainers <span class="link-sub">5 built · 18 to go</span></div>
+        </div>
+        <div class="quick-link" onclick="openLink('https://notion.so/339a4278eeb381f2ab82efca4a4d6b1d')">
+          <div class="link-icon icon-jp">KPI</div>
+          <div class="link-text">KPI Dashboard <span class="link-sub">Skill progress</span></div>
+        </div>
+        <div class="quick-link" onclick="sendPrompt('Build Week 2 day pages for Days 8–14 in the Japanese Notion workspace following the exact Day 1 format. Start with Day 8: あります/います deep-dive + U/Ru-verb drilling (Ch.2–3). ADHD micro-tasks, no romaji alone.')">
+          <div class="link-icon icon-jp">次</div>
+          <div class="link-text">Build Days 8–14 <span class="link-sub">Priority 1 task ↗</span></div>
+        </div>
+        <div class="quick-link" onclick="openLink('https://notion.so/339a4278eeb38116ade6ce6b7fccd0af')">
+          <div class="link-icon icon-jp">業</div>
+          <div class="link-text">Business JP Phrases <span class="link-sub">Thursday sessions</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-msg">
+    <span class="footer-glyphs" style="font-family:'Noto Sans JP',sans-serif;">頑張れ</span>
+    <span class="footer-text">Consistency over perfection · 継続は力なり · 坚持就是胜利</span>
+  </footer>
+
+</div>
+
+<script>
+  function showTab(lang) {
+    document.getElementById('panel-zh').classList.remove('visible');
+    document.getElementById('panel-jp').classList.remove('visible');
+    document.getElementById('tab-zh').className = 'tab-btn';
+    document.getElementById('tab-jp').className = 'tab-btn';
+    document.getElementById('panel-' + lang).classList.add('visible');
+    document.getElementById('tab-' + lang).classList.add('active-' + lang);
+  }
+
+  function openLink(url) {
+    var a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.click();
+  }
+
+  const today = new Date();
+  const target = new Date('2026-12-01');
+  const diff = Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+  document.getElementById('countdown-badge').textContent = diff + ' days to Dec 2026';
+
+  const grid = document.getElementById('week-grid');
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const todayDay = today.getDay();
+  const mondayOffset = (todayDay === 0 ? -6 : 1 - todayDay);
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + mondayOffset + i);
+    const isToday = d.toDateString() === today.toDateString();
+    const isSun = i === 6;
+    const isThu = i === 3;
+    const cell = document.createElement('div');
+    cell.className = 'day-cell' + (isToday ? ' today' : '');
+    const jpDone = i < 7 && !isSun;
+    const zhDone = false;
+    cell.innerHTML = `
+      <span class="day-label">${days[i]}</span>
+      <span class="day-num">${d.getDate()}</span>
+      <div class="day-dots">
+        <div class="day-dot ${jpDone ? 'dot-jp' : 'dot-empty'}"></div>
+        <div class="day-dot ${zhDone ? 'dot-zh' : 'dot-empty'}"></div>
+      </div>
+      ${isThu ? '<div style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--mandarin-amber);margin-top:3px;">Biz JP</div>' : ''}
+      ${isSun ? '<div style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--olive);margin-top:3px;">Rest</div>' : ''}
+    `;
+    grid.appendChild(cell);
+  }
+</script>
